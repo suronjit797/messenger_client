@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { store } from "./redux/store";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/api/v1/graphql",
+  uri: import.meta.env.VITE_API_BASE_URL + "/api/v1/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {

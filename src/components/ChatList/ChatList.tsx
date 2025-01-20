@@ -16,7 +16,7 @@ export const GET_USERS_QUERY = gql(`
   }
 `);
 
-const Header: React.FC = () => {
+const ChatList: React.FC = () => {
   // const [routes] = useGetRoutes();
   // const { user } = useAppSelector((state) => state.auth);
 
@@ -102,4 +102,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default ChatList;

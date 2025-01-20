@@ -18,7 +18,7 @@ const documents = {
     "\n  query MyChatUsers {\n    myChatUsers {\n      meta { page limit }\n      data { _id name email avatar isActive }\n    }\n  }\n": types.MyChatUsersDocument,
     "\n  query Profile($userId: ID!) {\n    user(id: $userId) { name email avatar isActive lastActive}\n  }\n": types.ProfileDocument,
     "\n    mutation SendMessage($body: CreateMessageInput!) {\n    createMessage(body: $body) { _id }\n  }\n": types.SendMessageDocument,
-    "\n  query GetMessage($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id, name email avatar }\n        sender{ _id name }\n        message\n        createdAt\n      }\n    }\n  }\n": types.GetMessageDocument,
+    "\n  query GetUserMessages($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id name email avatar }\n        sender { _id name }\n        message\n        createdAt\n      }\n    }\n  }\n": types.GetUserMessagesDocument,
     "\n  mutation Login($body: LoginInput) {\n    login(body: $body) {\n      accessToken\n    }\n  }\n": types.LoginDocument,
     "\n  query getProfile {\n    profile {\n      name\n      email\n      role\n    }\n  }\n": types.GetProfileDocument,
     "\n  mutation RegisterUser($body: CreateUserInput!) {\n    register(body: $body) {\n      _id\n      name\n    }\n  }\n": types.RegisterUserDocument,
@@ -60,7 +60,7 @@ export function gql(source: "\n    mutation SendMessage($body: CreateMessageInpu
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetMessage($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id, name email avatar }\n        sender{ _id name }\n        message\n        createdAt\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetMessage($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id, name email avatar }\n        sender{ _id name }\n        message\n        createdAt\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query GetUserMessages($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id name email avatar }\n        sender { _id name }\n        message\n        createdAt\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetUserMessages($userId: ID!, $pagination: PaginationInput) {\n    getUserMessage(id: $userId, pagination: $pagination) {\n      meta { page limit total }\n      data {\n        _id\n        users { _id name email avatar }\n        sender { _id name }\n        message\n        createdAt\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

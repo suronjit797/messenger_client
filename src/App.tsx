@@ -8,6 +8,8 @@ import { Bounce, ToastContainer } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "./redux/store";
 import { io } from "socket.io-client";
 import { setSocket } from "./redux/features/socketSlice";
+import { ApolloProvider } from "@apollo/client";
+import { gqlClient } from "./graphql.js";
 
 // antd theming
 const customDarkTheme = {
@@ -36,7 +38,7 @@ function App() {
   // useSocket();
   useEffect(() => {
     if (isLogin) {
-      const newSocket = io("http://localhost:5000", {
+      const newSocket = io(import.meta.env.VITE_API_BASE_URL, {
         auth: { token },
         transports: ["websocket"],
       });
@@ -73,24 +75,26 @@ function App() {
 
   return (
     <>
-      <ConfigProvider theme={customDarkTheme}>
-        <div className="">
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-            transition={Bounce}
-          />
-          <RouterProvider router={routes}></RouterProvider>
-        </div>
-      </ConfigProvider>
+      <ApolloProvider client={gqlClient}>
+        <ConfigProvider theme={customDarkTheme}>
+          <div className="">
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+              transition={Bounce}
+            />
+            <RouterProvider router={routes}></RouterProvider>
+          </div>
+        </ConfigProvider>
+      </ApolloProvider>
     </>
   );
 }

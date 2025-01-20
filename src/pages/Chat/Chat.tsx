@@ -108,9 +108,7 @@ const Chat: React.FC = () => {
 
         {/* chat body */}
         <div className="flex flex-col" style={{ height: "calc( 100vh - 76px )" }}>
-          <div className="p-4 overflow-y-auto h-full">
-            <ChatBody {...{ userId }} />
-          </div>
+          <ChatBody {...{ userId }} />
 
           {/* message input box */}
           <div className="p-4 text-white message_input bg-secondary">
@@ -142,9 +140,9 @@ const Chat: React.FC = () => {
       </div>
 
       {/* right side user profile */}
-      <div className="profile-part w-1/4 px-3 py-4 hidden md:block">
-        <ChatProfile />
-      </div>
+      {/* <div className="profile-part w-1/4 px-3 py-4 hidden md:block">
+        <ChatProfile {...{ user: user_data?.user }} />
+      </div> */}
     </div>
   );
 };
